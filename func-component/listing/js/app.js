@@ -4,7 +4,13 @@ const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'https://neto-api.herokuapp.com/etsy');
     xhr.send();
-    xhr.addEventListener('load', () => resolve(JSON.parse(xhr.responseText)));
+    xhr.addEventListener('load', () => {
+        if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.responseText))
+        } else {
+            resolve([]);
+        }
+    });
 })
 
 const currencyCode = (code) => {
@@ -32,16 +38,10 @@ const quanityClass = (quantity) => {
     }
 }
 
-/*
-    level-low — если остаток меньше 10 включительно,
-    level-medium — если остаток меньше 20 включительно,
-    level-high — если остаток больше 20.
-*/
-
 promise
     .then(response => ReactDOM.render(<Listing list={response} />, document.getElementById('root')))
 
-function Listing({list}) {
+const Listing = ({list}) => {
 
     const items = list.map(item => (
         <div className="item" key={item.listing_id}>
@@ -65,3 +65,6 @@ function Listing({list}) {
     )
 }
 
+Listing.defaultProps = {
+    list: []
+}
