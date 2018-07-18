@@ -22,8 +22,8 @@ const appendData = event => {
 }
 
 const checkSymbol = event => {
-    const regexEmail = /[a-zA-Z]|\d|\@|\.|\-|\_/gm;
-    const regexPass = /[a-zA-Z]|\d|\_/gm;
+    const regexEmail = /[A-z\d\@\.\-\_]/gm;
+    const regexPass = /[A-z\d\_]/gm;
     const key = event.key;
     const fieldTitle = event.currentTarget.placeholder;
     if (fieldTitle === 'Электронная почта' && !regexEmail.test(key)) {
