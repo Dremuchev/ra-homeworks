@@ -4,15 +4,21 @@ const VIEW_LIST = "view_list";
 const VIEW_MODULE = "view_module";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {view: VIEW_MODULE};
+  }
+
   render() {
     return (
       <div>
         <div className="toolbar">
           <IconSwitch
-            icon={VIEW_MODULE}
-            onSwitch={() => console.log("сменился тип вывода")} />
+            icon={this.state.view === VIEW_MODULE ? VIEW_LIST : VIEW_MODULE}
+            onSwitch={() => 
+              this.setState({view: this.state.view === VIEW_MODULE ? VIEW_LIST : VIEW_MODULE})} />
         </div>
-        {this.renderLayout(true)}
+        {this.renderLayout(this.state.view === VIEW_MODULE ? true : false)}
       </div>
     );
   }
