@@ -18,8 +18,7 @@ class App extends React.Component {
     this.setState({open: !this.state.open});
   }
 
-render() {
-  console.log(this.props.options);
+  render() {
     return (
       <div className="container">
         <div className={`dropdown-wrapper ${this.state.open ? "open" : ""}`} >
