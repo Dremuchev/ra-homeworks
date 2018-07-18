@@ -1,16 +1,17 @@
 'use strict';
+let content;
 
 const submitForm = f => {
     event.preventDefault();
     const object = {};
-    const formData = new FormData(document.querySelector('.content__form'));
+    const formData = new FormData(content);
     formData.forEach((value, key) => object[key] = value);
     f(JSON.stringify(object));
 }
 
 const FeedbackForm = ({data, onSubmit}) => {
     return (
-        <form className="content__form contact-form">
+        <form className="content__form contact-form" ref={element => content = element}>
             <div className="testing">
                 <p>Чем мы можем помочь?</p>
             </div>
