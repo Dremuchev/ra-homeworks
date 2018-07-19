@@ -36,9 +36,6 @@ class App extends React.Component {
 	}
 
 	render() {
-		const { data, colors, labels, series } = this.state;
-		const max = data.reduce((max, serie) => Math.max(max, serie.reduce((serieMax, item) => Math.max(serieMax, item), 0)), 0);
-
 		return (
 			<section>
         <SimpleCharts option={this.state} />
