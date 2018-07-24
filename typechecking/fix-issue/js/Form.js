@@ -1,5 +1,35 @@
 'use strict';
 
+const emailPropType = (props, propName, componentName) => {
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const email = props[propName];
+  let isEmail = (typeof email === 'string') && regex.test(email);
+  if (!isEmail) {
+    return new Error(`Неверный параметр ${propName} в компоненте
+      ${componentName}: параметр должен быть адресом электронной почты`);
+  }
+  return null;
+}
+
+const createChainableTypeChecker = (validate) => {
+  const checkType = (isRequired, props, propName, componentName) => {
+    if (props[propName] === null) {
+      if (isRequired) {
+        return new Error(`Обязательный атрибут ${propName}
+        не был передан компоненту ${componentName}`);
+      }
+    return null;
+    } else {
+      return validate(props, propName, componentName);
+    }
+  }
+  let chainedCheckType = checkType.bind(null, false);
+  chainedCheckType.isRequired = checkType.bind(null, true);
+  return chainedCheckType;
+}
+
+const emailPropTypeChecker = createChainableTypeChecker(emailPropType);
+
 const Form = (props) => {
   return (
     <div className="col-md-5 offset-md-4">
@@ -45,11 +75,10 @@ const Form = (props) => {
 Form.propTypes = {
   handleSubmit: PropTypes.func,
   handleChange: PropTypes.func,
-
-  email: PropTypes.number,
+  email: emailPropTypeChecker.isRequired,
   first_name: PropTypes.string,
   last_name: PropTypes.string,
-  age: PropTypes.integer,
+  age: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   nickname: PropTypes.string,
-  is_married: PropTypes.integer
+  is_married: PropTypes.bool
 };

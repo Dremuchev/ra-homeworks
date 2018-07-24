@@ -43,10 +43,22 @@ class App extends React.Component {
 
   render() {
     const menuItems = ['Google', 'https://google.com', 'Яндекс', 'https://yandex.ru'];
+    const menuItemsArray = [];
+    let obj = {};
+    menuItems.forEach((el, i) => {
+      if (i % 2 === 0) {
+        obj.name = el;
+      }
+      if (i % 2 != 0) {
+        obj.url = el;
+        menuItemsArray.push(obj);
+        obj = {};
+      }
+    })
 
     return (
       <React.Fragment>
-        <Menu handleSearch={'this.onSearch'} title={'Приложение'} version={'1.3.23'} items={[menuItems]}/>
+        <Menu handleSearch={this.onSearch} title={'Приложение'} version={'1.3'} items={menuItemsArray}/>
         <div className="row">
           <Form {...this.state} handleChange={this.onChange} handleSubmit={this.onSubmit}/>
         </div>

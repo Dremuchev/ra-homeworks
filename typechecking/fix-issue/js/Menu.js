@@ -24,7 +24,6 @@ const Menu = (props) => {
 
 Menu.propTypes = {
   handleSearch: PropTypes.func,
-
   title: PropTypes.string,
   version: (props, propName, componentName) => {
     if (!/^[0-9]{1,2}\.[0-9]{1,2}$/.test(props[propName])) {
