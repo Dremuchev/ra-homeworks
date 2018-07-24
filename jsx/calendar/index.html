@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+
+  <canvas id='wall'></canvas>
+  <form id='selectDate'>
+    <div>
+      <p class='description'>Выберете желаемую дату для отображения календаря</p>
+      <input type="date" id="myDate" name="myDate" value='' required>
+      <span class="validity"></span>
+      <input id='sendDate' type="submit">
+    </div>
+  </form>
+  </div>
   <div id="root"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>

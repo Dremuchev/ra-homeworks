@@ -126,3 +126,42 @@
   width: 325px;
   margin: 50px auto;
 }
+
+
+#selectDate {
+  text-align: center;
+}
+
+#sendDate {
+  display: inline-block;
+	font-size: 16px;
+	border-radius: 5px;
+	border: 1px solid #cecece;
+	background-color: #F6F6f6;
+	padding: 8.5px 10px;
+	background: #b4cbe5;
+	color: #203a58;
+	border: 1px solid #000;
+}
+
+.description {  
+	font-size: 16px;
+}
+
+#wall {
+  position: absolute;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+#myDate {
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+	font-size: 16px;
+	padding: 6px 10px 4px 10px;
+	border: 1px solid #000;
+	background: #294b72;
+	border-radius: 5px;
+}
