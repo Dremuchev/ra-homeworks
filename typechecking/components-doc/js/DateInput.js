@@ -10,26 +10,30 @@ const DateInput = props => {
   )
 };
 
-const birtdayPropType = (props, propName, componentName) => {
+const birthdayPropType = (props, propName, componentName) => {
   const regex = /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/;
+  const showError = (string) => new Error(`Неверное значение '${props[propName]}' 
+    параметра ${propName} в компоненте ${componentName}`);
   let birthday = props[propName];
-  let isBirthday = (typeof birthday === 'string') && regex.test(birthday);
+  let isDate = (typeof birthday === 'string') && regex.test(birthday);
   if (!birthday) {
     return null;
   }
-  if (!isBirthday) {
-    return new Error(`Неверный параметр ${propName} в компоненте
-      ${componentName}: формат даты должен соответствовать маске YYYY-MM-DD`);
+  if (!isDate) {
+    return showError();
   }
-  let date = birthday.split('-');
-  date = new Date(date[0], date[1] - 1, date[2]);
+  birthday = birthday.split('-');
+  birthday = new Date(birthday[0], birthday[1] - 1, birthday[2]);
+  if (birthday.getTime() >= Date.now()) {
+    return showError();
+  }
 }
 
 DateInput.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: birtdayPropType
+  value: birthdayPropType
 }
 
 DateInput.defaultProps = {
