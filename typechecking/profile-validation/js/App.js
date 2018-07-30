@@ -9,7 +9,7 @@ class App extends React.Component {
           first_name: 'Alexey',
           last_name: 'Korzhov',
           url: 'https://vk.com/anonimizer_me',
-          birthday: '1988-03-21'
+          birthday: '1983-03-21'
         },
         {
           first_name: 'Pavel',
