@@ -1,15 +1,16 @@
 const FontSelector = ({ fonts, selectedFont, onSelect }) => {
-    return ( <
-        div className = "font-picker" > {
+    return ( 
+        <div className = "font-picker"> {
             fonts.map(item => {
-                return <ItemFont
-                item = { item }
-                onSelect = { onSelect }
-                checked = { selectedFont && selectedFont.name === item.name }
-                />
+                return (
+                    <ItemFont
+                    item = { item }
+                    onSelect = { onSelect }
+                    checked = { selectedFont && selectedFont.name === item.name }
+                    />
+                )
             })
-        } <
-        /div>
+        } </div>
     )
 };
 
@@ -20,25 +21,13 @@ const ItemFont = ({ item, onSelect, checked }) => {
         onSelect(currentFont)
     };
 
-    return ( <
-        div className = "grid center font-item" >
-        <
-        input ref = {
-            () => currentFont = item }
-        type = "radio"
-        name = "font"
-        value = { name }
-        id = { name }
-        onChange = { inputHandler }
-        defaultChecked = { checked }
-        /> <
-        label htmlFor = { name }
-        className = "grid-1" >
-        <
-        PictureFont text = { name.replace(name[name.length - 1], '') }
-        path = { path }
-        /> <
-        /label> <
-        /div>
+    return (
+        <div className = "grid center font-item">
+            <input type="radio" name="font" value={name} id={name} onChange={inputHandler}
+                   ref={() => currentFont = item} defaultChecked={checked} />
+            <label htmlFor={name} className="grid-1">
+                <PictureFont text={name.replace(name[name.length - 1], '')} path={path} />
+            </label>
+        </div>
     );
 };
