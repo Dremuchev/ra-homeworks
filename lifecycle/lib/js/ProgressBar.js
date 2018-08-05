@@ -37,10 +37,10 @@ class ProgressBar extends React.Component {
     this.drawProgress(0);
   }
 
-  componentWillReceiveProps(newProps) {
-    let progress = newProps.completed === 1
+  componentWillReceiveProps(nextProps) {
+    let progress = nextProps.completed === 1
       ? 0 
-      : Math.round(newProps.completed * 100 / newProps.total);
+      : Math.round(nextProps.completed * 100 / nextProps.total);
     this.drawProgress(progress);
   }
 
