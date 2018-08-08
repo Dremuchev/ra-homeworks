@@ -8,6 +8,10 @@ class Cart extends React.Component {
     this.setState({ isOpen: args.items.length !== 0 })
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.items.length !== nextProps.items.length;
+  }
+
   render() {
     if (this.state.isOpen) {
       return (
